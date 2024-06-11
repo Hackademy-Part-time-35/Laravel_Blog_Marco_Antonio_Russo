@@ -1,0 +1,16 @@
+body::-webkit-scrollbar{
+    display: none;
+}
+
+.active-link{
+    --tw-text-opacity: 1;
+    color: rgb(185 28 28 / var(--tw-text-opacity));
+    font-weight: bold;
+    
+}
+
+.instagram-gradient:hover{
+    background: -webkit-linear-gradient(45deg, rgba(85,62,155,1) 0%, rgba(154,60,155,1) 33%, rgba(197,38,70,1) 66%, rgba(205,153,55,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
