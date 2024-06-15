@@ -57,30 +57,39 @@
         @if(count($articles) === 0) {{-- Crea per ogni articolo un titolo, la categoria e l'anteprima del contenuto con infine il link all'articolo completo --}}
             <p>Nessun articolo disponibile</p>
         @else
+            @php 
+                $counterArticles = 0;   // Variabile per alternare vista articoli a dx e sx
+            @endphp
             @foreach($articles as $key => $article)
 
-                @if($key % 2 == 0)  {{-- Alternanza articoli --}}
-                    <article class="mb-5 md:mb-0">
-                        <section class="mb-4">
-                            <h3 class="text-2xl font-medium text-red-700">{{Str::upper($article["title"])}}</h3>
-                            <h6 class="text-sm"><em>{{$article["category"]}}</em></h6>
-                        </section>
-                        <p class=" lg:w-2/5">{{Str::substr($article["description"],0,100)}}...</p>
-                        <a class=" text-red-600 underline text-sm" href={{ route('article', $key)}}><i class="fa-solid fa-chevron-right"></i><em> Leggi articolo completo</em></a>
-                    </article>
-                @else
-                    <article class="mb-5 md:mb-0 text-end flex flex-col">
-                        <section class="mb-4">
-                            <h3 class="text-2xl font-medium text-red-700">{{Str::upper($article["title"])}}</h3>
-                            <h6 class="text-sm"><em>{{$article["category"]}}</em></h6>
-                        </section>
-                        <p class=" lg:w-2/5 self-end">{{Str::substr($article["description"],0,100)}}...</p>
-                        <a class=" text-red-600 underline text-sm" href={{ route('article', $key)}}><i class="fa-solid fa-chevron-right"></i><em> Leggi articolo completo</em></a>
+                @if($article["visible"])
 
-                    </article>
+                    @if($counterArticles % 2 == 0)  {{-- Alternanza articoli --}}
+                        <article class="mb-5 md:mb-0">
+                            <section class="mb-4">
+                                <h3 class="text-2xl font-medium text-red-700">{{Str::upper($article["title"])}}</h3>
+                                <h6 class="text-sm"><em>{{$article["category"]}}</em></h6>
+                            </section>
+                            <p class=" lg:w-2/5">{{Str::substr($article["description"],0,100)}}...</p>
+                            <a class=" text-red-600 underline text-sm" href={{ route('article', $key)}}><i class="fa-solid fa-chevron-right"></i><em> Leggi articolo completo</em></a>
+                        </article>
+                    @else
+                        <article class="mb-5 md:mb-0 text-end flex flex-col">
+                            <section class="mb-4">
+                                <h3 class="text-2xl font-medium text-red-700">{{Str::upper($article["title"])}}</h3>
+                                <h6 class="text-sm"><em>{{$article["category"]}}</em></h6>
+                            </section>
+                            <p class=" lg:w-2/5 self-end">{{Str::substr($article["description"],0,100)}}...</p>
+                            <a class=" text-red-600 underline text-sm" href={{ route('article', $key)}}><i class="fa-solid fa-chevron-right"></i><em> Leggi articolo completo</em></a>
+                        </article>
+                        
+                    @endif
+
+                    @php
+                        $counterArticles++;
+                    @endphp
                     
                 @endif
-                    
 
             @endforeach
         @endif
