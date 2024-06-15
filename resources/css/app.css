@@ -20,8 +20,3 @@ body::-webkit-scrollbar{
     -webkit-text-fill-color: transparent;
 }
 
-.md\:hidden{
-    @media (min-width: 768px){
-        display: none!important;
-    }
-}
