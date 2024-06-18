@@ -33,9 +33,12 @@ class PageController extends Controller
 
     public function articles(){
         $title = "Blog Laravel Marco";
+        $articles = array_filter($this->articles, function($el){
+            return $el["visible"] == true;
+        });
     
         return view('pages.articles',
-        ["title" => $title,"articles" => $this->articles]);
+        ["title" => $title,"articles" => $articles]);
     }
 
     public function article($id){
