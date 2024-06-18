@@ -48,6 +48,7 @@ class PageController extends Controller
 
         return view('pages.contacts',
         ["title" => $title]);
+        
     }
 
     public function aboutUs(){
@@ -67,4 +68,7 @@ class PageController extends Controller
         "title" => $title,
         ]);
     }
+
+  
+
 }

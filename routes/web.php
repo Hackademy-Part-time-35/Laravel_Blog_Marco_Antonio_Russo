@@ -9,7 +9,7 @@ Route::get('/', [PageController::class, "home"])->name("homepage");
 
 Route::get('/articoli', [PageController::class, "articles"])->name("articles");
 
-Route::get("articles/{id}", [PageController::class, "article"])->name("article");
+Route::get("articoli/{id}", [PageController::class, "article"])->name("article");
 
 Route::get('/contatti', [PageController::class, "contacts"])->name("contacts");
 
