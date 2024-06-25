@@ -27,18 +27,27 @@
             <h2 class="text-2xl pb-3 font-semibold">
                 Contattaci
             </h2>
+            <x-check-success />
             <div>
                 <div class="flex flex-col mb-3">
-                <label for="name">Nome</label>
-                <input name="name" type="text" id="name" class="px-3 py-2 bg-gray-800 border border-gray-900 focus:border-red-500 focus:outline-none focus:bg-gray-800 focus:text-red-500">
+                    <label for="name">Nome</label>
+                    <input name="name" type="text" id="name" class="px-3 py-2 bg-gray-800 border border-gray-900 focus:border-red-500 focus:outline-none focus:bg-gray-800 focus:text-red-500">
                 </div>
                 <div class="flex flex-col mb-3">
-                <label for="email">Email</label>
-                <input name="email" type="text" id="email" class="px-3 py-2 bg-gray-800 border border-gray-900 focus:border-red-500 focus:outline-none focus:bg-gray-800 focus:text-red-500">
+                    <label for="email">Email</label>
+                    <input name="email" type="text" id="email" class="px-3 py-2 bg-gray-800 border border-gray-900 focus:border-red-500 focus:outline-none focus:bg-gray-800 focus:text-red-500">
                 </div>
                 <div class="flex flex-col mb-3">
-                <label for="message">Messaggio</label>
-                <textarea name="content" rows="4" id="message" class="px-3 py-2 bg-gray-800 border border-gray-900 focus:border-red-500 focus:outline-none focus:bg-gray-800 focus:text-red-500"></textarea>
+                    <label for="message">Messaggio</label>
+                    <textarea name="content" rows="4" id="message" class="px-3 py-2 bg-gray-800 border border-gray-900 focus:border-red-500 focus:outline-none focus:bg-gray-800 focus:text-red-500"></textarea>
+                </div>
+                <div class="flex flex-col mb-3">
+                    <label for="priority">Priorità</label>
+                    <select name="priority" rows="4" id="priority" class="px-3 py-2 bg-gray-800 border border-gray-900 focus:border-red-500 focus:outline-none focus:bg-gray-800 focus:text-red-500">
+                        <option value="low">Bassa</option>
+                        <option value="medium">Media</option>
+                        <option value="hight">Alta</option>
+                    </select>
                 </div>
             </div>
             <div class="w-full pt-3">

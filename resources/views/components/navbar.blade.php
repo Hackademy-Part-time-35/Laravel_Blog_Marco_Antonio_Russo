@@ -12,6 +12,7 @@
             <li class="border-b-2 md:border-0"><a class=" {{ request()->is("articoli") || request()->is("articoli/*") ? "active-link" : "" }}" href={{route("articles")}}>Articoli</a></li>
             <li class="border-b-2 md:border-0"><a class=" {{ request()->is("contatti") ? "active-link" : "" }}" href={{route("contacts")}}>Contatti</a></li>
             <li><a class=" {{ request()->is("chi-siamo") ? "active-link" : "" }}" href={{route("aboutUs")}}>Chi siamo</a></li>
+            <li><a class=" {{ request()->is("conta-stringa") ? "active-link" : "" }}" href={{route("count.string")}}>Conta Stringa</a></li>
         </ul>
 
 

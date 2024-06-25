@@ -18,3 +18,6 @@ Route::get('/chi-siamo', [PageController::class, "aboutUs"])->name("aboutUs");
 Route::get('/contatti', [ContactController::class, "contactsGet"])->name("contacts");
 
 Route::post('/contatti', [ContactController::class,'contactsPost'])->name('contacts.post');
+
+Route::get('/conta-stringa', [PageController::class, "countString"])->name("count.string");
+Route::post('/conta-stringa', [PageController::class,'countStringSend'])->name('count.string.send');

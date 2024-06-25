@@ -65,6 +65,15 @@ class PageController extends Controller
         ]);
     }
 
-  
+    public function countString(){
+        return view("pages.string-count");
+    }
+
+    public function countStringSend(Request $request){
+        $string = $request->content;
+        $stringLeng = strlen($string);
+        return redirect()->back()->with(["output" => "Il messaggio inviato è lungo $stringLeng caratteri"]);
+    }
+
 
 }
