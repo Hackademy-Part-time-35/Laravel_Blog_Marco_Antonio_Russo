@@ -46,13 +46,6 @@ class PageController extends Controller
         return view("pages.article",["article"=> $article]);
     }
 
-    public function contacts(){
-        $title = "Blog Laravel Marco";
-
-        return view('pages.contacts',
-        ["title" => $title]);
-        
-    }
 
     public function aboutUs(){
         $title = "Blog Laravel Marco";
