@@ -21,3 +21,6 @@ Route::post('/contatti', [ContactController::class,'contactsPost'])->name('conta
 
 Route::get('/conta-stringa', [PageController::class, "countString"])->name("count.string");
 Route::post('/conta-stringa', [PageController::class,'countStringSend'])->name('count.string.send');
+
+Route::get('/libri', [PageController::class,'books'])->name('books');
+Route::get("/libri/{id}", [PageController::class, "book"])->name("book");

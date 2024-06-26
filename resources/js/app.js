@@ -8,6 +8,9 @@ let navLinks = document.querySelector("#navLinks");
 let articlesComponent = document.querySelectorAll("article.articleComponent");
 let articlesComponentPar = document.querySelectorAll("p.articleComponent");
 
+// variabili per colore stelle rank
+let rankStar = Array.from(document.querySelectorAll("i.starRank"));
+let rankVote = document.querySelectorAll("span.starRank");
 
  // toggle nav links show on mobile
 function toggleNavLinks(){   
@@ -41,3 +44,17 @@ articlesComponentPar.forEach((el,idx) =>{
 
 
 
+rankVote.forEach((el,idx) =>{
+    let bookStar = rankStar.splice(0,5);
+    let bookVote = parseInt(el.textContent);
+    bookStar.forEach((star,idStar) =>{
+        if(idStar + 0.5 == bookVote / 2){
+            star.classList.remove("fa-regular", "fa-star")
+            star.classList.add("fa-solid", "fa-star-half-stroke")
+        }else if(idStar < bookVote / 2) {
+            star.classList.remove("fa-regular")
+            star.classList.add("fa-solid")
+        }
+    })
+    console.log(bookStar);
+})
