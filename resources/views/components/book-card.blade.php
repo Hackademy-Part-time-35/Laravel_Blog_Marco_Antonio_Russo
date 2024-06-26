@@ -1,10 +1,10 @@
 <div class="w-full max-w-sm rounded-lg shadow border-2 bg-gray-800 border-red-700">
-        <div class="flex justify-center"><img class="p-8 h-[500px]" src="{{$img}}" alt="book image" /></div>
-    <div class="px-5 pb-5 flex flex-col ">
+        <div class="flex justify-center"><img class="rounded-t-lg p-1 h-[500px] w-[400px]" src="{{$img}}" alt="book image" /></div>
+    <div class="px-5 pb-5 flex flex-col mt-5">
         <a href="#">
-            <h5 class="text-xl font-semibold tracking-tight text-grey-800">
-                @if( Str::length($title) > 30 )
-                    {{Str::substr($title,0,30) . "..."}}
+            <h5 class="text-2xl font-semibold tracking-tight text-grey-800">
+                @if( Str::length($title) > 25 )
+                    {{Str::substr($title,0,25) . "..."}}
                 @else
                     {{$title}}
                 @endif
