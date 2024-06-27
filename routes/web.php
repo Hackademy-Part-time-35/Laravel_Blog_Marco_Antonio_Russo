@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\BooksController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
@@ -7,11 +9,12 @@ use App\Http\Controllers\ContactController;
 
 
 
+
 Route::get('/', [PageController::class, "home"])->name("homepage");
 
-Route::get('/articoli', [PageController::class, "articles"])->name("articles");
-
-Route::get("articoli/{id}", [PageController::class, "article"])->name("article");
+Route::get('/articoli', [ArticlesController::class, "articles"])->name("articles");
+Route::get("articoli/{article}", [ArticlesController::class, "article"])->name("article");
+Route::get("/db", [ArticlesController::class,"insertRecord"])->name("database.article");
 
 Route::get('/chi-siamo', [PageController::class, "aboutUs"])->name("aboutUs");
 
@@ -22,5 +25,7 @@ Route::post('/contatti', [ContactController::class,'contactsPost'])->name('conta
 Route::get('/conta-stringa', [PageController::class, "countString"])->name("count.string");
 Route::post('/conta-stringa', [PageController::class,'countStringSend'])->name('count.string.send');
 
-Route::get('/libri', [PageController::class,'books'])->name('books');
-Route::get("/libri/{id}", [PageController::class, "book"])->name("book");
+Route::get('/libri', [BooksController::class,'books'])->name('books');
+Route::get("libri/db", [BooksController::class,"insertRecord"])->name("database.book");
+Route::get("/libri/{book}", [BooksController::class, "book"])->name("book");
+

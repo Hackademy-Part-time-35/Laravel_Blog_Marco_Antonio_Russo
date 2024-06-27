@@ -15,8 +15,8 @@
             <p>Nessun articolo disponibile</p>
         @else
             @foreach($articles as $key => $article)
-                @if($article["visible"])
-                    <x-card :description="$article['description']" :category="$article['category']" :title="$article['title']" :route="route('article', $key)"/>
+                @if($article->visible)
+                    <x-card :description="$article->description" :category="$article->category" :title="$article->title" :route="route('article', $article->id)"/>
                 @endif
             @endforeach
         @endif
