@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->default('customer');
             $table->string('email');
-            $table->text('content');
+            $table->text('content')->nullable();
             $table->enum('priority', ['low','medium','hight'])->default('low');
             $table->timestamps();
         });

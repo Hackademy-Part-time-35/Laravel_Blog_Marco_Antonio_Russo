@@ -22,10 +22,10 @@ class ContactController extends Controller
             Mail::to("example@example.com")->send(new \App\Mail\ContactsEmail($request->name, $request->email, $request->content, $request->priority));
 
             Contact::create([
-                "name"=> $request->name,
+                "name"=> $request->name ? $request->name : "customer",
                 "email"=> $request->email,
-                "content"=> $request->content,
-                "priority" => $request->priority
+                "content"=> $request->content ? $request->content : NULL,
+                "priority" => $request->priority ? $request->priority : "low"
             ]);
 
             return redirect()->back()->with(["success" => "Inviato correttamente"]);
