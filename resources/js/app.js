@@ -12,6 +12,11 @@ let articlesComponentPar = document.querySelectorAll("p.articleComponent");
 let rankStar = Array.from(document.querySelectorAll("i.starRank"));
 let rankVote = document.querySelectorAll("span.starRank");
 
+// variabili per preview img nuovo articolo
+let previewContainer = document.querySelector("div#preview-container");
+let outputIMG = document.querySelector("img#preview");
+let inputIMG = document.querySelector("input#image");
+
  // toggle nav links show on mobile
 function toggleNavLinks(){   
     navLinks.classList.toggle("hidden");
@@ -57,4 +62,15 @@ rankVote.forEach((el,idx) =>{
         }
     })
     console.log(bookStar);
+})
+
+
+inputIMG.addEventListener("change", function(file){
+    previewContainer.classList.remove("hidden");
+    previewContainer.classList.add("flex");
+
+    outputIMG.src = URL.createObjectURL(file.target.files[0]);
+    outputIMG.onload = function(){
+        URL.revokeObjectURL(outputIMG.src);
+    }
 })

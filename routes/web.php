@@ -9,22 +9,29 @@ use App\Http\Controllers\ContactController;
 
 
 
-
+// Home
 Route::get('/', [PageController::class, "home"])->name("homepage");
 
-Route::get('/articoli', [ArticlesController::class, "articles"])->name("articles");
-Route::get("articoli/{article}", [ArticlesController::class, "article"])->name("article");
-Route::get("/db", [ArticlesController::class,"insertRecord"])->name("database.article");
 
+// Articles
+Route::get('/articoli', [ArticlesController::class, "articles"])->name("articles");
+Route::get("articoli/crea", [ArticlesController::class, "create"])->name("article.create");
+Route::post("articoli/crea", [ArticlesController::class,"store"])->name("article.store");
+Route::get("articoli/{article}", [ArticlesController::class, "article"])->name("article");
+
+// About Us
 Route::get('/chi-siamo', [PageController::class, "aboutUs"])->name("aboutUs");
 
+// Contacts
 Route::get('/contatti', [ContactController::class, "contactsGet"])->name("contacts");
-
 Route::post('/contatti', [ContactController::class,'contactsPost'])->name('contacts.post');
 
+// String Count
 Route::get('/conta-stringa', [PageController::class, "countString"])->name("count.string");
 Route::post('/conta-stringa', [PageController::class,'countStringSend'])->name('count.string.send');
 
+
+// Books
 Route::get('/libri', [BooksController::class,'books'])->name('books');
 Route::get("libri/db", [BooksController::class,"insertRecord"])->name("database.book");
 Route::get("/libri/{book}", [BooksController::class, "book"])->name("book");

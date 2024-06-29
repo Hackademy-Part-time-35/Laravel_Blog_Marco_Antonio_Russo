@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreArticleRequest;
 use Illuminate\Http\Request;
 use App\Models\Article;
 
@@ -15,14 +16,6 @@ class ArticlesController extends Controller
     public function __construct(){
         $this->articles = Article::all();
     }
-    public function insertRecord(){
-        Article::create([
-            "title" => "titolo 4", 
-            "category" => "action", 
-            "description" => $this->lorem, 
-            "visible" => true
-        ]);
-    }
 
     public function articles(){
         
@@ -33,5 +26,25 @@ class ArticlesController extends Controller
     public function article(Article $article){
 
         return view("pages.article",["article"=> $article]);
+    }
+
+    public function create(){
+        return view("pages.create-article");
+    }
+
+    public function store(StoreArticleRequest $request){
+        $article = Article::create($request->all());
+
+        if($request->hasFile("image") && $request->file("image")->isValid()){
+            $imgName = "img_" . uniqid() . "." . $request->file("image")->extension();
+            $imgPath = "public/images/" . $article->id;
+            
+
+            $article->image = $request->file("image")->storeAs($imgPath,$imgName);;
+            $article->save();
+            
+        }
+
+        return redirect()->back()->with("success","Articolo creato correttamente");
     }
 }

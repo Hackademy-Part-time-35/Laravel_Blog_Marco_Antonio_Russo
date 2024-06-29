@@ -14,6 +14,7 @@ class Article extends Model
         "category",
         "description",
         "body",
-        "visible"
+        "visible",
+        "img"
     ];
 }
