@@ -12,7 +12,9 @@
         <article class="mt-10 px-5 lg:px-60 flex justify-center gap-5">
             <secion>
                 <div class="flex justify-center">
-                    <img class="w-[400px]" src="{{$book["img"]}}" alt="">
+                    <object class="w-[400px]" data="{{Storage::url($book->img)}}">
+                        <img class="w-[400px]" src="{{$book->img}}" alt="">
+                    </object>
                 </div>
             </secion>
             <section class="mb-4 w-1/2">

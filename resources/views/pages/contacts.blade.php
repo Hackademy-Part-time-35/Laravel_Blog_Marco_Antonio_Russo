@@ -35,7 +35,8 @@
                 </div>
                 <div class="flex flex-col mb-3">
                     <label for="email">Email</label>
-                    <input name="email" type="text" id="email" class="px-3 py-2 bg-gray-800 border border-gray-900 focus:border-red-500 focus:outline-none focus:bg-gray-800 focus:text-red-500">
+                    <input name="email" type="text" id="email" class="px-3 py-2 bg-gray-800 border border-gray-900 focus:border-red-500 focus:outline-none focus:bg-gray-800 focus:text-red-500 @error("email") border-red-700 @enderror">
+                    <x-error-validation name="email" />
                 </div>
                 <div class="flex flex-col mb-3">
                     <label for="message">Messaggio</label>

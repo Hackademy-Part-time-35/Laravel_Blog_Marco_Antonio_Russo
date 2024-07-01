@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBookRequest;
 use Illuminate\Http\Request;
 use App\Models\Book;
 
@@ -40,16 +41,19 @@ class BooksController extends Controller
         return view("pages.book",["book"=> $book]);
     }
 
-    public function insertRecord(){
-        // foreach($this->books as $book){
-        //     Book::create([
-        //         "title" => $book["title"],
-        //         "author" => $book["author"],
-        //         "date" => $book["date"],
-        //         "rank" => $book["rank"],
-        //         "description" => $book["description"],
-        //         "img" => $book["img"]
-        //     ]);
-        // }
+    public function create(){
+        return view("pages.create-book",["title"=> "Crea Libro"]);
+    }
+    public function store(StoreBookRequest $request){
+        $book = Book::create($request->all());
+
+        if( $request->hasFile("cover") && $request->file("cover")->isValid()){
+            $coverPath = "public/images/" . $book->id;
+            $coverName = "book_cover_" . uniqid() . "." . $request->file("cover")->extension();
+            $book->img = $request->file("cover")->storeAs($coverPath, $coverName);
+            $book->save();
+        }
+
+        return redirect()->back()->with("success","Libro inserito correttamente");
     }
 }

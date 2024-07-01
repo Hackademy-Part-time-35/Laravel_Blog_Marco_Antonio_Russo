@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ContactsRequest;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Contact;
 
@@ -16,22 +17,19 @@ class ContactController extends Controller
         
     }
 
-    public function contactsPost(Request $request){
+    public function contactsPost(ContactsRequest $request){
+        
+        $request["name"] = $request->name ?? "customer";
+        
+        Mail::to("example@example.com")->send(new \App\Mail\ContactsEmail(
+            $request->name, 
+            $request->email, 
+            $request->content, 
+            $request->priority
+        ));
 
-        if($request->email){
-            Mail::to("example@example.com")->send(new \App\Mail\ContactsEmail($request->name, $request->email, $request->content, $request->priority));
+        Contact::create($request->all());
 
-            Contact::create([
-                "name"=> $request->name ? $request->name : "customer",
-                "email"=> $request->email,
-                "content"=> $request->content ? $request->content : NULL,
-                "priority" => $request->priority ? $request->priority : "low"
-            ]);
-
-            return redirect()->back()->with(["success" => "Inviato correttamente"]);
-        }else{
-            return redirect()->back()->with(["error" => "Compilare il campo \"EMAIL\""]);
-
-        }
+        return redirect()->back()->with(["success" => "Inviato correttamente"]);
     }
 }

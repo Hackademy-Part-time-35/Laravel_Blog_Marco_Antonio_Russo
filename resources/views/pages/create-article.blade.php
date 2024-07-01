@@ -36,7 +36,7 @@
                 <div class="flex flex-col mb-3">
                     <label for="image">Immagine articolo</label>
                     <input type="file" name="image" id="image" class="block w-full border text-sm focus:z-10 focus:border-red-700 focus:ring-red-700  border-gray-800 text-gray-400
-                    file:border-0 file:me-4 file:py-3 file:px-4 file:bg-gray-800 file:text-white" value="{{ old("image") }}">
+                    file:border-0 file:me-4 file:py-3 file:px-4 file:bg-gray-800 file:text-white" ">
                 </div>
                 <div id="preview-container" class="flex-col mb-3 relative justify-center items-center hidden w-full">
                     <img class=" opacity-6s0 border-dashed border-4 border-red-700" id="preview">

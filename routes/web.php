@@ -33,6 +33,6 @@ Route::post('/conta-stringa', [PageController::class,'countStringSend'])->name('
 
 // Books
 Route::get('/libri', [BooksController::class,'books'])->name('books');
-Route::get("libri/db", [BooksController::class,"insertRecord"])->name("database.book");
+Route::get('/libri/crea', [BooksController::class, "create"])->name("book.create");
+Route::post("libri/crea", [BooksController::class,"store"])->name("book.store");
 Route::get("/libri/{book}", [BooksController::class, "book"])->name("book");
-
