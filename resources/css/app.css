@@ -20,3 +20,11 @@ body::-webkit-scrollbar{
     -webkit-text-fill-color: transparent;
 }
 
+#clickAreaProfileImage:hover #profileImgLabel{
+    opacity: unset;
+}
+
+#clickAreaProfileImage:hover #profileImg{
+    opacity: 30%;
+    
+}

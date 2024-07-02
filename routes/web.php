@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
@@ -46,3 +47,5 @@ Route::prefix("account")->middleware("auth")->group(function () {
     Route::get("articoli/crea", [ArticlesController::class, "create"])->name("article.create");
     Route::post("articoli/crea", [ArticlesController::class,"store"])->name("article.store");
 });
+
+Route::put('users/{id}', [UserController::class,'update'])->name('user.update');

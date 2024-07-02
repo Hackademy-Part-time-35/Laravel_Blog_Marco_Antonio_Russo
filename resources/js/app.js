@@ -23,7 +23,7 @@ let bookCover = document.querySelector("input#coverInput");
 let bookCoverLabel = document.querySelector("label#coverLabel");
 let bookCoverImg = document.querySelector("img#coverImg");
 
-// variabili per la file2:///usr/share/ulauncher/preferences/dist/index.html#/shortcutscreazione di un nuovo libro
+// variabili per la creazione di un nuovo libro
 let starInput = document.querySelector("input#starInput");
 let bookRank = document.querySelector("span#bookRank");
 let titleEdit = document.querySelector("#titleEdit");
@@ -34,6 +34,13 @@ let dateEdit = document.querySelector("#dateEdit");
 let date = document.querySelector("input[name='date']");
 let descEdit = document.querySelector("#descEdit");
 let desc = document.querySelector("input[name='description']");
+
+// variabili per dashboard
+let profileImgInput = document.querySelector("input#profileImgInput");
+let clickAreaProfileImage = document.querySelector("#clickAreaProfileImage");
+let profileImgLabel = document.querySelector("label#profileImgLabel");
+let profileImg = document.querySelector("img#profileImg");
+let profileImgForm = document.querySelector("form#profileImgForm");
 
 
  // toggle nav links show on mobile
@@ -75,8 +82,8 @@ function starDraw(){
 }
 
 
-bars.onclick = toggleNavLinks;
 
+bars.onclick = toggleNavLinks;
 
 // alternanza articoli
 articlesComponent.forEach((el,idx) =>{
@@ -117,17 +124,23 @@ if(inputIMG){
     })
 }
 
+function imagePreview(input,previewArea,inputLabel){
+    input.addEventListener("change", function(file){
+        previewArea.classList.remove("hidden");
+        previewArea.src = URL.createObjectURL(file.target.files[0]);
+        previewArea.onload = function(){
+            URL.revokeObjectURL(previewArea.src);
+        }
+        if(inputLabel)inputLabel.classList.add("hidden")
+    })
+}
 
 if(bookCover){
-    bookCover.addEventListener("change", function(file){
-        bookCoverImg.classList.remove("hidden");
-        bookCoverImg.src = URL.createObjectURL(file.target.files[0]);
-        bookCoverImg.onload = function(){
-            URL.revokeObjectURL(bookCoverImg.src);
-        }
+    imagePreview(bookCover, bookCoverImg, bookCoverLabel);
+}
 
-        bookCoverLabel.classList.add("hidden")
-    })
+if(profileImgInput){
+    imagePreview(profileImgInput, profileImg);
 }
 
 if(starInput){
@@ -143,3 +156,11 @@ if(titleEdit || authorEdit || dateEdit || descEdit){
     copyEditValues(dateEdit, date);
     copyEditValues(descEdit, desc);
 }
+
+
+
+
+
+
+
+

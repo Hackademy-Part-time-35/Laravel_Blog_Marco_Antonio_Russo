@@ -41,7 +41,7 @@
                         </div>
                         <ul class="py-2 text-sm text-white">
                             <li>
-                                <a href="/account" class="block px-4 py-2 hover:underline hover:text-red-700 hover:font-bold">Dashboard</a>
+                                <a href="/account" class="block px-4 py-2 hover:underline hover:text-red-700 hover:font-bold {{ request()->is("account") ? "active-link" : "" }}">Dashboard</a>
                             </li>
                         </ul>
                         <form class="py-2" method="POST" action="/logout">
