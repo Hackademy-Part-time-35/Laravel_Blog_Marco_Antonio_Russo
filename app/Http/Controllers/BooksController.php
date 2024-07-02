@@ -34,15 +34,15 @@ class BooksController extends Controller
     }
     public function books(){    
 
-        return view("pages.books",["title" =>  "libri", "books" => $this->books]);
+        return view("books.books",["title" =>  "libri", "books" => $this->books]);
     }
 
     public function book(Book $book){
-        return view("pages.book",["book"=> $book]);
+        return view("books.book",["book"=> $book]);
     }
 
     public function create(){
-        return view("pages.create-book",["title"=> "Crea Libro"]);
+        return view("books.create-book",["title"=> "Crea Libro"]);
     }
     public function store(StoreBookRequest $request){
         $book = Book::create($request->all());

@@ -19,17 +19,17 @@ class ArticlesController extends Controller
 
     public function articles(){
         
-        return view('pages.articles',
+        return view('articles.articles',
         ["title" => "articoli","articles" => $this->articles]);
     }
 
     public function article(Article $article){
 
-        return view("pages.article",["article"=> $article]);
+        return view("articles.article",["article"=> $article]);
     }
 
     public function create(){
-        return view("pages.create-article");
+        return view("articles.create-article");
     }
 
     public function store(StoreArticleRequest $request){

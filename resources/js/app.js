@@ -1,4 +1,5 @@
 import './bootstrap';
+import 'flowbite';
 
 // variabili per navbar responsive
 let bars = document.querySelector("#navBarsBtn");
@@ -22,7 +23,7 @@ let bookCover = document.querySelector("input#coverInput");
 let bookCoverLabel = document.querySelector("label#coverLabel");
 let bookCoverImg = document.querySelector("img#coverImg");
 
-// variabili per la creazione di un nuovo libro
+// variabili per la file2:///usr/share/ulauncher/preferences/dist/index.html#/shortcutscreazione di un nuovo libro
 let starInput = document.querySelector("input#starInput");
 let bookRank = document.querySelector("span#bookRank");
 let titleEdit = document.querySelector("#titleEdit");

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\BooksController;
 use App\Models\User;
@@ -15,8 +16,6 @@ Route::get('/', [PageController::class, "home"])->name("homepage");
 
 // Articles
 Route::get('/articoli', [ArticlesController::class, "articles"])->name("articles");
-Route::get("articoli/crea", [ArticlesController::class, "create"])->name("article.create");
-Route::post("articoli/crea", [ArticlesController::class,"store"])->name("article.store");
 Route::get("articoli/{article}", [ArticlesController::class, "article"])->name("article");
 
 // About Us
@@ -33,6 +32,17 @@ Route::post('/conta-stringa', [PageController::class,'countStringSend'])->name('
 
 // Books
 Route::get('/libri', [BooksController::class,'books'])->name('books');
-Route::get('/libri/crea', [BooksController::class, "create"])->name("book.create");
-Route::post("libri/crea", [BooksController::class,"store"])->name("book.store");
 Route::get("/libri/{book}", [BooksController::class, "book"])->name("book");
+
+// Account
+
+
+Route::prefix("account")->middleware("auth")->group(function () {
+    Route::get("/", [AccountController::class,"account"])->name("account");
+    
+    Route::get('/libri/crea', [BooksController::class, "create"])->name("book.create");
+    Route::post("libri/crea", [BooksController::class,"store"])->name("book.store");
+
+    Route::get("articoli/crea", [ArticlesController::class, "create"])->name("article.create");
+    Route::post("articoli/crea", [ArticlesController::class,"store"])->name("article.store");
+});
