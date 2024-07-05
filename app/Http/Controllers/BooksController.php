@@ -32,17 +32,23 @@ class BooksController extends Controller
     public function __construct(){
         $this->books = Book::all();
     }
+    public function index(){
+        return view("books.index", [
+            "title"=> "Libri",
+            "books"=> $this->books
+        ]);
+    }
     public function books(){    
 
         return view("books.books",["title" =>  "libri", "books" => $this->books]);
     }
 
-    public function book(Book $book){
-        return view("books.book",["book"=> $book]);
+    public function show(Book $book){
+        return view("books.show",["book"=> $book]);
     }
 
     public function create(){
-        return view("books.create-book",["title"=> "Crea Libro"]);
+        return view("books.create",["title"=> "Crea Libro"]);
     }
     public function store(StoreBookRequest $request){
         $book = Book::create($request->all());
@@ -55,5 +61,23 @@ class BooksController extends Controller
         }
 
         return redirect()->back()->with("success","Libro inserito correttamente");
+    }
+
+
+    public function edit(Book $book){
+
+        return view("books.edit",["title"=> "Modifica Libro", "book" => $book]);
+    }
+
+    public function update(Book $book, StoreBookRequest $request){
+        $book->update($request->all());
+
+        return redirect()->route("books.index")->with("success","Libro modificato correttamente");
+    }
+
+    public function destroy(Book $book){
+        $book->delete();
+
+        return redirect()->back()->with("success","Libro cancellato correttamente");
     }
 }

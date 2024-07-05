@@ -9,22 +9,20 @@
     {{-- START Header --}}
     <header class=" p-14 flex flex-col gap-5 ">
         
-            <section class="grid grid-cols-3 text-center">
-                <h1 class="col-start-2 font-bold text-5xl mb-10">Articoli</h1>
-                @auth
-                    <a href="{{ route("article.create") }}" class="fa-solid fa-plus text-3xl text-white text-end"></a>
-                @endauth
-            </section>
+                <h1 class="text-center font-bold text-5xl mb-10">Articoli</h1>
+
         
-        @if(count($articles) === 0) {{-- Crea per ogni articolo un titolo, la categoria e l'anteprima del contenuto con infine il link all'articolo completo --}}
-            <p>Nessun articolo disponibile</p>
-        @else
-            @foreach($articles as $key => $article)
-                @if($article->visible)
-                    <x-card :description="$article->description" :category="$article->category" :title="$article->title" :route="route('article', $article->id)"/>
-                @endif
-            @endforeach
-        @endif
+     <div class="w-5/6 mx-auto">
+            @if(count($articles) === 0) {{-- Crea per ogni articolo un titolo, la categoria e l'anteprima del contenuto con infine il link all'articolo completo --}}
+                <p>Nessun articolo disponibile</p>
+            @else
+                @foreach($articles as $article)
+                    @if($article->visible)
+                        <x-card :$article/>
+                    @endif
+                @endforeach
+            @endif
+     </div>
 
     </header>
     

@@ -20,6 +20,8 @@
     
             </ul>
     
+
+            {{-- Logged Users --}}
     
             @auth
             {{-- Dropdown button --}}
@@ -28,30 +30,41 @@
                         <img src="{{ Storage::url(auth()->user()->img)}}" alt="">
                     </div>
     
-                    <button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="text-whitefont-medium px-5 py-2.5 text-center " type="button">
-                        <i class="fa-solid fa-ellipsis-vertical"></i> 
+                    <button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="text-whitefont-medium ps-2 py-2.5 text-center " type="button">
+                        <i class="fa-solid fa-chevron-down"></i> 
                     </button>
                 </div>
                     
                     <!-- Dropdown menu -->
-                    <div id="dropdownInformation" class="z-10 hidden bg-slate-700 divide-y divide-gray-100 rounded-lg shadow w-44 border-2 border-red-700 mt-40">
+                    <div id="dropdownInformation" class="z-10 hidden bg-slate-700 divide-y divide-red-700 rounded-lg shadow w-44 border-2 border-red-700 mt-40">
                         <div class="px-4 py-3 text-sm text-white">
                             <div>{{auth()->user()->name}}</div>
                             <div class="font-medium truncate">{{auth()->user()->email}}</div>
                         </div>
                         <ul class="py-2 text-sm text-white">
+                            <li >
+                                <a href="{{ route("account")}}" class="block px-4 py-2 hover:underline hover:text-red-700 hover:font-bold truncate {{ request()->is("dashboard") ? "active-link" : "" }}">Dashboard</a>
+                            </li>
                             <li>
-                                <a href="/account" class="block px-4 py-2 hover:underline hover:text-red-700 hover:font-bold {{ request()->is("account") ? "active-link" : "" }}">Dashboard</a>
+                                <a href="{{ route("articles.index") }}" class="block px-4 py-2 hover:underline hover:text-red-700 hover:font-bold {{ request()->is("*/articles/*") ? "active-link" : "" }}">Articoli</a>
+                            </li>
+                            <li>
+                                <a href="{{ route("categories.index") }}" class="block px-4 py-2 hover:underline hover:text-red-700 hover:font-bold {{ request()->is("*/categories/*") ? "active-link" : "" }}">Categorie</a>
+                            </li>
+                            <li>
+                                <a href="{{ route("books.index") }}" class="block px-4 py-2 hover:underline hover:text-red-700 hover:font-bold {{ request()->is("*/books/*") ? "active-link" : "" }}">Libri</a>
                             </li>
                         </ul>
-                        <form class="py-2" method="POST" action="/logout">
-                            @csrf
-                            <button type="submit" href="#" class="block px-4 py-2 text-sm text-white hover:underline hover:text-red-700 hover:font-bold">Sign out</button>
-                        </form>
+                        <div class="hover:bg-red-700 text-white">
+                            <form class="py-2" method="POST" action="/logout">
+                                @csrf
+                                <button type="submit" href="#" class="block px-4 py-2 text-sm text-white hover:underline hover:font-bold w-full">Sign out</button>
+                            </form>
+                        </div>
                     </div>
             @else
                 <button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="text-whitefont-medium px-5 py-2.5 text-center " type="button">
-                    <i class="fa-solid fa-ellipsis-vertical"></i> 
+                    <i class="fa-solid fa-bars"></i> 
                 </button>
     
                 <div id="dropdownInformation" class="z-10 hidden bg-slate-700 divide-y divide-gray-100 rounded-lg shadow w-44 border-2 border-red-700 mt-40">

@@ -3,21 +3,19 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ContactController;
-
-
+use App\Models\Book;
 
 // Home
 Route::get('/', [PageController::class, "home"])->name("homepage");
 
 
-// Articles
-Route::get('/articoli', [ArticlesController::class, "articles"])->name("articles");
-Route::get("articoli/{article}", [ArticlesController::class, "article"])->name("article");
+
 
 // About Us
 Route::get('/chi-siamo', [PageController::class, "aboutUs"])->name("aboutUs");
@@ -31,21 +29,32 @@ Route::get('/conta-stringa', [PageController::class, "countString"])->name("coun
 Route::post('/conta-stringa', [PageController::class,'countStringSend'])->name('count.string.send');
 
 
-// Books
-Route::get('/libri', [BooksController::class,'books'])->name('books');
-Route::get("/libri/{book}", [BooksController::class, "book"])->name("book");
 
 // Account
-
-
-Route::prefix("account")->middleware("auth")->group(function () {
+Route::prefix("dashboard")->middleware("auth")->group(function () {
     Route::get("/", [AccountController::class,"account"])->name("account");
-    
-    Route::get('/libri/crea', [BooksController::class, "create"])->name("book.create");
-    Route::post("libri/crea", [BooksController::class,"store"])->name("book.store");
 
-    Route::get("articoli/crea", [ArticlesController::class, "create"])->name("article.create");
-    Route::post("articoli/crea", [ArticlesController::class,"store"])->name("article.store");
+
+    Route::resource("articles", ArticlesController::class, [
+        "exept" => ["show"]
+    ]);
+    Route::resource('categories', CategoryController::class);
+
+        
+    Route::resource("books", BooksController::class, [
+        "exept" => ["show"]
+    ]);
+
 });
 
+
+// Articles
+Route::get('/articoli', [ArticlesController::class, "articles"])->name("articles");
+Route::get("articles/show/{article}", [ArticlesController::class,"show"])->name("articles.show");
+
+// Books
+Route::get('/books', [BooksController::class,'books'])->name('books');
+Route::get("/books/{book}", [BooksController::class, "show"])->name("books.show");
+
+// User
 Route::put('users/{id}', [UserController::class,'update'])->name('user.update');

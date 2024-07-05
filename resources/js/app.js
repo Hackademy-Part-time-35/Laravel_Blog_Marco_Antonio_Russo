@@ -42,6 +42,10 @@ let profileImgLabel = document.querySelector("label#profileImgLabel");
 let profileImg = document.querySelector("img#profileImg");
 let profileImgForm = document.querySelector("form#profileImgForm");
 
+// variabili per camviare visibilità all'articolo nell'index
+let visibilityBtn = document.querySelector("button#visibilityBtn");
+
+
 
  // toggle nav links show on mobile
 function toggleNavLinks(){   
@@ -58,6 +62,7 @@ function toggleNavLinks(){
 }
 
 function copyEditValues(editField, inputField){
+    inputField.value = editField.textContent;
     editField.addEventListener("input", function(){
         inputField.value = editField.textContent;
     })
@@ -156,7 +161,6 @@ if(titleEdit || authorEdit || dateEdit || descEdit){
     copyEditValues(dateEdit, date);
     copyEditValues(descEdit, desc);
 }
-
 
 
 

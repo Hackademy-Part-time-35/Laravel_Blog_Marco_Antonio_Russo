@@ -22,7 +22,7 @@
     
     <title>{{$title}}</title>
 </head>
-<body class=" font-[Montserrat] bg-gradient-to-r from-gray-900 to-gray-700 text-gray-200 mt-16">
+<body class="min-h-[calc(100vh-70px)] font-[Montserrat] bg-gradient-to-r from-gray-900 to-gray-700 text-gray-200 mt-16">
     {{ $slot }}
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
 </body>

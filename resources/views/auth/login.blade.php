@@ -2,7 +2,7 @@
     <x-navbar />
 
 
-    <main class="flex justify-center items-center m-auto w-1/2 mt-40">
+    <main class="flex justify-center items-center m-auto w-1/2 py-10">
         <form action="/login" method="POST" class=" w-1/2 border border-red-500 p-6 bg-gray-900">
                 @csrf
                 
