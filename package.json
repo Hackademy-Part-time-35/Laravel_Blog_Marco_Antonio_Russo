@@ -4,7 +4,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "serve": "php artisan serve"
+        "serve": "php artisan serve & xdg-open http://127.0.0.1:8000"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.19",

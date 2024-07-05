@@ -21,7 +21,7 @@
                     <div class="flex gap-1">
                         <select name="category" type="text" id="category" class="px-3 py-2 bg-gray-800 border border-gray-800 focus:border-red-700 focus:outline-none focus:bg-gray-800 focus:text-red-700 w-full @error("category") border-red-700 @enderror" value="{{ old("category") }}" max="50">
                             @foreach($categories as $category)
-                                <option  value="{{ $category->name }}">{{ $category->name }}</option>
+                                <option  value="{{ $category->name }}" @selected(old("name") === "$category->name")>{{ $category->name }}</option>
                             @endforeach
                         </select>
                         <button type="button" onclick="categoryModal.showModal()" class="flex items-center bg-gray-800 px-3"><i class="fa-solid fa-plus"></i></button>
@@ -67,7 +67,12 @@
         <form method="dialog">
             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>
-        <form method="POST" action="{{ route("categories.store") }}">
+        <form method="POST" action="{{ route("categories.storeFromArticles") }}">
+            @csrf
+            <input id="modalTitle" type="text" name="title" class="hidden">
+            <input id="modalDescription" type="text" name="description" class="hidden">
+            <input id="modalBody" type="text" name="body" class="hidden">
+
             <h3 class="text-lg font-bold mb-5">Nuova Categoria</h3>
             <div class="flex flex-col gap-2">
                 <label for="name">Nome</label>

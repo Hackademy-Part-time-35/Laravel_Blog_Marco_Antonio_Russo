@@ -46,6 +46,11 @@ class CategoryController extends Controller
         return redirect()->back()->with("success","Categoria creata correttamente");
     }
 
+    public function storeFromArticles(Request $request)
+    {
+        Category::create($request->all());
+        return redirect()->back()->with("success","Categoria creata correttamente")->withInput();
+    }
     /**
      * Display the specified resource.
      */
@@ -77,8 +82,18 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        dd($category->id);
         $category->delete();
-
+        
         return redirect()->back();
     }
+
+    public function destroyFromMultiselect(Request $request){
+
+        foreach ($request->name as $name) {
+            Category::where('name', $name)->delete();
+        }
+        return redirect()->back();
+    }
+
 }

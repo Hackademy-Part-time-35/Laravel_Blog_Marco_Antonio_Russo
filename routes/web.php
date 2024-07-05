@@ -39,13 +39,16 @@ Route::prefix("dashboard")->middleware("auth")->group(function () {
         "exept" => ["show"]
     ]);
     Route::resource('categories', CategoryController::class);
-
+    Route::delete("categories", [CategoryController::class,"destroyFromMultiselect"])->name("categories.destroyFromMultiselect");
         
     Route::resource("books", BooksController::class, [
         "exept" => ["show"]
     ]);
 
 });
+
+// Categories
+Route::post("dashboard/articles/create", [CategoryController::class,"storeFromArticles"])->name("categories.storeFromArticles");
 
 
 // Articles

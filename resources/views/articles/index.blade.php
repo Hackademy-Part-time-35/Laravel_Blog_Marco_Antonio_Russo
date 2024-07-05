@@ -30,11 +30,16 @@
                                 {{ $article->visible == 1? "Visibile" : "Nascosto"}}
                             </div>
                         </td>
-                        <td class="flex justify-end gap-5 pe-6">
+                        <td class="flex justify-end items-center gap-5 pe-6">
                             <a href="{{ route("articles.edit", $article)}}" class=" btn btn-warning">Modifica</a>
                             <form method="POST" action="{{ route("articles.destroy", $article) }}"> @csrf @method('DELETE')
                                 <button class="btn btn-ghost btn-outline  btn-error">Elimina</button>
                             </form>
+                            <a target="_blank" href="{{route("articles.show",$article)}}">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m15 15 6-6m0 0-6-6m6 6H9a6 6 0 0 0 0 12h3" />
+                                </svg>
+                            </a>
                         </td>
                     </tr>
                 </tbody>

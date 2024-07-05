@@ -42,12 +42,21 @@ let profileImgLabel = document.querySelector("label#profileImgLabel");
 let profileImg = document.querySelector("img#profileImg");
 let profileImgForm = document.querySelector("form#profileImgForm");
 
-// variabili per camviare visibilità all'articolo nell'index
+// variabili per cambiare visibilità all'articolo nell'index
 let visibilityBtn = document.querySelector("button#visibilityBtn");
 
+//variabili per crea categoria nel crea articolo
+let modalTitle = document.querySelector("input#modalTitle"); 
+let modalDescription = document.querySelector("input#modalDescription"); 
+let body = document.querySelector("textarea[name='body']");
+let modalBody = document.querySelector("input#modalBody"); 
 
 
- // toggle nav links show on mobile
+
+// Funzioni
+
+
+            // toggle nav links show on mobile
 function toggleNavLinks(){   
     navLinks.classList.toggle("hidden");
     navLinks.classList.toggle("absolute");
@@ -61,11 +70,20 @@ function toggleNavLinks(){
     navLinks.classList.toggle("p-5");
 }
 
+
 function copyEditValues(editField, inputField){
     inputField.value = editField.textContent;
     editField.addEventListener("input", function(){
         inputField.value = editField.textContent;
     })
+}
+
+function copyHiddenInput(visibleInput, hiddenInput){
+    hiddenInput.value = visibleInput.value
+    visibleInput.addEventListener("input", function(){
+        hiddenInput.value = visibleInput.value;
+    })
+
 }
 
 function starDraw(){
@@ -86,7 +104,22 @@ function starDraw(){
         bookRank.textContent = starInput.value;
 }
 
+function imagePreview(input,previewArea,inputLabel){
+    input.addEventListener("change", function(file){
+        previewArea.classList.remove("hidden");
+        previewArea.src = URL.createObjectURL(file.target.files[0]);
+        previewArea.onload = function(){
+            URL.revokeObjectURL(previewArea.src);
+        }
+        if(inputLabel)inputLabel.classList.add("hidden")
+    })
+}
 
+
+
+
+
+// Codice 
 
 bars.onclick = toggleNavLinks;
 
@@ -104,6 +137,7 @@ articlesComponentPar.forEach((el,idx) =>{
 })
 
 
+// disegno stelle
 rankVote.forEach((el,idx) =>{
     let bookStar = rankStar.splice(0,5);
     let bookVote = parseInt(el.textContent);
@@ -118,6 +152,8 @@ rankVote.forEach((el,idx) =>{
     })
 })
 
+
+// preview immagine al caricamento
 if(inputIMG){
     inputIMG.addEventListener("change", function(file){
         previewContainer.classList.remove("hidden");
@@ -129,16 +165,8 @@ if(inputIMG){
     })
 }
 
-function imagePreview(input,previewArea,inputLabel){
-    input.addEventListener("change", function(file){
-        previewArea.classList.remove("hidden");
-        previewArea.src = URL.createObjectURL(file.target.files[0]);
-        previewArea.onload = function(){
-            URL.revokeObjectURL(previewArea.src);
-        }
-        if(inputLabel)inputLabel.classList.add("hidden")
-    })
-}
+
+
 
 if(bookCover){
     imagePreview(bookCover, bookCoverImg, bookCoverLabel);
@@ -154,7 +182,7 @@ if(starInput){
 }
 
 
-
+// auto insert da div editabili a input sez. libri
 if(titleEdit || authorEdit || dateEdit || descEdit){
     copyEditValues(titleEdit,title);
     copyEditValues(authorEdit,author);
@@ -164,7 +192,12 @@ if(titleEdit || authorEdit || dateEdit || descEdit){
 
 
 
+if(modalTitle || modalDescription || modalBody){
+    copyHiddenInput(title, modalTitle);
+    copyHiddenInput(desc, modalDescription);
+    copyHiddenInput(body, modalBody);
 
+}
 
 
 

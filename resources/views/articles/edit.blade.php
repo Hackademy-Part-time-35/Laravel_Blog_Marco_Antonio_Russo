@@ -11,7 +11,6 @@
             <h2 class="text-2xl pb-3 font-semibold">
                 Modifica Articolo
             </h2>
-            <x-check-success />
             <div>
                 <div class="flex flex-col mb-3">
                     <label for="title">Titolo</label>
@@ -20,11 +19,14 @@
                 </div>
                 <div class="flex flex-col mb-3">
                     <label for="category">Categoria</label>
-                    <select name="category" type="text" id="category" class="px-3 py-2 bg-gray-800 border border-gray-900 focus:border-red-500 focus:outline-none focus:bg-gray-800 focus:text-red-500 @error("category") border-red-700 @enderror" value="{{ old("category") }}" max="50">
-                        @foreach($categories as $category)
-                            <option  value="{{ $category->name }}" @selected($article->category === "$category->name")>{{ $category->name }}</option>
-                        @endforeach
-                    </select>
+                    <div class="flex gap-1">
+                        <select name="category" type="text" id="category" class="px-3 py-2 bg-gray-800 border border-gray-800 focus:border-red-700 focus:outline-none focus:bg-gray-800 focus:text-red-700 w-full @error("category") border-red-700 @enderror" value="{{ old("category") }}" max="50">
+                            @foreach($categories as $category)
+                                <option  value="{{ $category->name }}" @selected(old("name",$article->category) === "$category->name")>{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                        <button type="button" onclick="categoryModal.showModal()" class="flex items-center bg-gray-800 px-3"><i class="fa-solid fa-plus"></i></button>
+                    </div>
                     <x-error-validation name="category" />
                     
                 </div>
@@ -69,5 +71,33 @@
             </form>
     </main>
     {{-- END Main --}}
+
+
+    <!-- Open the modal using ID.showModal() method -->
+<dialog id="categoryModal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box">
+        <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+        </form>
+        <form method="POST" action="{{ route("categories.storeFromArticles") }}">
+            @csrf
+            <input id="modalTitle" type="text" name="title" class="hidden">
+            <input id="modalDescription" type="text" name="description" class="hidden">
+            <input id="modalBody" type="text" name="body" class="hidden">
+
+            <h3 class="text-lg font-bold mb-5">Nuova Categoria</h3>
+            <div class="flex flex-col gap-2">
+                <label for="name">Nome</label>
+                <input name="name" type="text" class="input input-bordered w-full max-w-xs" />
+            </div>
+            <div class="modal-action">
+                @csrf
+                <!-- if there is a button in form, it will close the modal -->
+                <button type="submit" class="btn btn-success">Crea</button>
+        </form>
+    </div>
+</dialog>
+
+<x-toast-success />
 
 </x-layout> 
