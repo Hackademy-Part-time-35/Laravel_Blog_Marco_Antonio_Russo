@@ -89,9 +89,10 @@ class CategoryController extends Controller
     }
 
     public function destroyFromMultiselect(Request $request){
-
-        foreach ($request->name as $name) {
-            Category::where('name', $name)->delete();
+        if($request->name){
+            foreach ($request->name as $name) {
+                Category::where('name', $name)->delete();
+            }
         }
         return redirect()->back();
     }

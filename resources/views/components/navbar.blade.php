@@ -43,16 +43,16 @@
                         </div>
                         <ul class="py-2 text-sm text-white">
                             <li >
-                                <a href="{{ route("account")}}" class="block px-4 py-2 hover:underline hover:text-red-700 hover:font-bold truncate {{ request()->is("dashboard") ? "active-link" : "" }}">Dashboard</a>
+                                <a href="{{ route("account")}}" class="text-lg block px-4 py-2 hover:underline hover:text-red-700 hover:font-bold truncate {{ request()->is("dashboard") ? "active-link" : "" }}">Dashboard</a>
                             </li>
                             <li>
-                                <a href="{{ route("articles.index") }}" class="block px-4 py-2 hover:underline hover:text-red-700 hover:font-bold {{ request()->is("*/articles/*") ? "active-link" : "" }}">Articoli</a>
+                                <a href="{{ route("articles.index") }}" class=" text-xs block px-4 py-2 hover:underline hover:text-red-700 hover:font-bold {{ request()->segment(2)== "articles" ? "active-link" : "" }}">Articoli</a>
                             </li>
                             <li>
-                                <a href="{{ route("categories.index") }}" class="block px-4 py-2 hover:underline hover:text-red-700 hover:font-bold {{ request()->is("*/categories/*") ? "active-link" : "" }}">Categorie</a>
+                                <a href="{{ route("categories.index") }}" class=" text-xs block px-4 py-2 hover:underline hover:text-red-700 hover:font-bold {{ request()->segment(2) == "categories" ? "active-link" : "" }}">Categorie</a>
                             </li>
                             <li>
-                                <a href="{{ route("books.index") }}" class="block px-4 py-2 hover:underline hover:text-red-700 hover:font-bold {{ request()->is("*/books/*") ? "active-link" : "" }}">Libri</a>
+                                <a href="{{ route("books.index") }}" class=" text-xs block px-4 py-2 hover:underline hover:text-red-700 hover:font-bold {{ request()->segment(2) == "books" ? "active-link" : "" }}">Libri</a>
                             </li>
                         </ul>
                         <div class="hover:bg-red-700 text-white">

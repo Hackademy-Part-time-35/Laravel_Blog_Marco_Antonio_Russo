@@ -6,8 +6,8 @@ let bars = document.querySelector("#navBarsBtn");
 let navLinks = document.querySelector("#navLinks");
 
 // variabili per alternanza articoli
-let articlesComponent = document.querySelectorAll("article.articleComponent");
-let articlesComponentPar = document.querySelectorAll("p.articleComponent");
+// let articlesComponent = document.querySelectorAll("article.articleComponent");
+// let articlesComponentPar = document.querySelectorAll("p.articleComponent");
 
 // variabili per colore stelle rank
 let rankStar = Array.from(document.querySelectorAll("i.starRank"));
@@ -124,17 +124,19 @@ function imagePreview(input,previewArea,inputLabel){
 bars.onclick = toggleNavLinks;
 
 // alternanza articoli
-articlesComponent.forEach((el,idx) =>{
-    if(idx % 2 != 0){
-        el.classList.add("text-end", "flex", "flex-col");
-    }
-})
+// articlesComponent.forEach((el,idx) =>{
+//     if(idx % 2 != 0){
+//         el.classList.add("text-end", "flex", "flex-col");
+//     }
+// })
 
-articlesComponentPar.forEach((el,idx) =>{
-    if(idx % 2 != 0){
-        el.classList.add("self-end");
-    }
-})
+// if(articlesComponentPar){
+//     articlesComponentPar.forEach((el,idx) =>{
+//         if(idx % 2 != 0){
+//             el.classList.add("self-end");
+//         }
+//     })
+// }
 
 
 // disegno stelle

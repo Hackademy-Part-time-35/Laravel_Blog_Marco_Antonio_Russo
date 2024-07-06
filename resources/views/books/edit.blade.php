@@ -10,7 +10,7 @@
             @method('PUT')
 {{-- IMG --}}
             <section class="flex items-center w-[400px] h-[600px] border-dashed border-2 rounded-xl border-gray-700 justify-center object-cover overflow-hidden">
-                <img id="coverImg" class=" hidden rounded-xl pointer-events-none" src="" alt="cover-img">
+                <img id="coverImg" class=" hidden rounded-xl pointer-events-none " src="" alt="cover-img">
                 <label id="coverLabel" class="flex flex-col absolute text-center text-gray-500" for="cover"><i class="fa-solid fa-plus text-5xl opacity-70 pointer-events-none"></i>Drag and Drop</label>
                 <input draggable="true" type="file" name="cover" id="coverInput"
                 class="w-full h-full file:opacity-0 empty:opacity-0">

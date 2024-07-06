@@ -12,7 +12,7 @@
                 <h1 class="text-center font-bold text-5xl mb-10">Articoli</h1>
 
         
-     <div class="w-5/6 mx-auto">
+     <div class="mx-auto flex flex-wrap gap-x-16 gap-y-8 justify-center">
             @if(count($articles) === 0) {{-- Crea per ogni articolo un titolo, la categoria e l'anteprima del contenuto con infine il link all'articolo completo --}}
                 <p>Nessun articolo disponibile</p>
             @else
