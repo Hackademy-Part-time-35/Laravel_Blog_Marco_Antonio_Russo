@@ -2,7 +2,7 @@
     <div class="p-6 w-1/2 flex flex-col gap-2">
             <section class="mb-4">
                 <h3 class="text-2xl font-medium text-red-700">{{ Str::upper($article->title) }}</h3>
-                <h6 class="text-sm"><em>{{$article->category}}</em></h6>
+                <h6 class="text-sm"><em>{{$article->category->name}}</em></h6>
             </section>
             <p class="articleComponent">
                 @if( Str::length($article->description) > 25 )

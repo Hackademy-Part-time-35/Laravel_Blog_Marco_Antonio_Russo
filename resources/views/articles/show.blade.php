@@ -18,7 +18,7 @@
             <section>
                 <section class="mb-4">
                     <h1 class="text-3xl text-red-700">{{Str::upper("$article->title")}}</h1>
-                    <h6 class="text-sm"><em>{{$article->category}}</em></h6>
+                    <h6 class="text-sm"><em>{{$article->category->name}}</em></h6>
                 </section>
                 <p class="text-sm mb-5">{{$article->description}}</p>
                 <p>{{$article->body}}</p>

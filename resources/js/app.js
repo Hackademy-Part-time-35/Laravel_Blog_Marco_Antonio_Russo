@@ -53,10 +53,11 @@ let modalBody = document.querySelector("input#modalBody");
 
 
 
+
 // Funzioni
 
 
-            // toggle nav links show on mobile
+// toggle nav links show on mobile
 function toggleNavLinks(){   
     navLinks.classList.toggle("hidden");
     navLinks.classList.toggle("absolute");
@@ -203,3 +204,7 @@ if(modalTitle || modalDescription || modalBody){
 
 
 
+document.addEventListener("mousedown", function(){
+    const checkbox = this.documentElement.querySelectorAll("input[type=\"checkbox\"]:checked")
+    console.log(checkbox[0].id);
+})

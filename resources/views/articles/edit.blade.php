@@ -18,16 +18,16 @@
                     <x-error-validation name="title" />
                 </div>
                 <div class="flex flex-col mb-3">
-                    <label for="category">Categoria</label>
+                    <label for="category_id">Categoria</label>
                     <div class="flex gap-1">
-                        <select name="category" type="text" id="category" class="px-3 py-2 bg-gray-800 border border-gray-800 focus:border-red-700 focus:outline-none focus:bg-gray-800 focus:text-red-700 w-full @error("category") border-red-700 @enderror" value="{{ old("category") }}" max="50">
+                        <select name="category_id" type="text" id="category_id" class="px-3 py-2 bg-gray-800 border border-gray-800 focus:border-red-700 focus:outline-none focus:bg-gray-800 focus:text-red-700 w-full @error("category_id") border-red-700 @enderror" value="{{ old("category") }}" max="50">
                             @foreach($categories as $category)
-                                <option  value="{{ $category->name }}" @selected(old("name",$article->category) === "$category->name")>{{ $category->name }}</option>
+                                <option  value="{{ $category->id }}" @selected(old("name",$article->category->name) === "$category->name")>{{ $category->name }}</option>
                             @endforeach
                         </select>
                         <button type="button" onclick="categoryModal.showModal()" class="flex items-center bg-gray-800 px-3"><i class="fa-solid fa-plus"></i></button>
                     </div>
-                    <x-error-validation name="category" />
+                    <x-error-validation name="category_id" />
                     
                 </div>
                 <div class="flex flex-col mb-3">

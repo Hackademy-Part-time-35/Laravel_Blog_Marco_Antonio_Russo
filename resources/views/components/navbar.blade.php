@@ -1,4 +1,4 @@
-<nav class=" border-b-2 border-b-red-700 fixed w-full top-0 left-0">
+<nav class=" border-b-2 border-b-red-700 fixed w-full top-0 left-0 z-10">
     <section class=" p-3 flex justify-between items-center bg-gradient-to-r from-slate-800 to-slate-700 relative">
         <div class="flex items-center gap-3">
             <a href={{route("homepage")}}><img class=" h-10" src="https://static-00.iconduck.com/assets.00/laravel-icon-1990x2048-xawylrh0.png" alt="laravel-logo"></a>

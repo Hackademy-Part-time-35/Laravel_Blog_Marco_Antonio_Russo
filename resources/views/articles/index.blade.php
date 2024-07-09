@@ -24,7 +24,7 @@
                     <tr class="hover:bg-slate-700">
                         <th>{{ $article->id }}</th>
                         <td>{{ $article->title }}</td>
-                        <td>{{ $article->category }}</td>
+                        <td>{{ $article->category->name }}</td>
                         <td>
                             <div @class(['badge-success' => $article->visible, "badge" => true, "badge-error" => !$article->visible])>
                                 {{ $article->visible == 1? "Visibile" : "Nascosto"}}
@@ -49,5 +49,6 @@
     </div>
 
 
+<x-toast-success />
     
 </x-layout>

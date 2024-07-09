@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -82,19 +83,18 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        dd($category->id);
+        $numArticles = Article::where('category_id', $category->id)->count();
+        Article::where('category_id', $category->id)->update(["category_id" => 7]);
         $category->delete();
         
-        return redirect()->back();
+        return redirect()->back()->with(["success" => "Categoria cancellata correttamente - $numArticles articoli sono stati modificati"]);
     }
 
     public function destroyFromMultiselect(Request $request){
-        if($request->name){
-            foreach ($request->name as $name) {
-                Category::where('name', $name)->delete();
-            }
-        }
-        return redirect()->back();
+
+        dd($request->all());
+
+        return redirect()->back()->with(["success" => "Categorie cancellate correttamente"]);
     }
 
 }
