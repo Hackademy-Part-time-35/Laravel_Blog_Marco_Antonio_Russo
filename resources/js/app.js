@@ -1,3 +1,4 @@
+import axios from 'axios';
 import './bootstrap';
 import 'flowbite';
 
@@ -52,7 +53,16 @@ let body = document.querySelector("textarea[name='body']");
 let modalBody = document.querySelector("input#modalBody"); 
 
 
+// const formData = new FormData();
+// formData.append("key1", "value1");
+// formData.append("key2", "value2");
 
+// let btnaxios = document.querySelector("#axiosBtn");
+// btnaxios.addEventListener("click" ,  function(){
+//     axios.delete("/dashboard/categories", {
+//         body: formData
+//     }).then(response => window.location.href = "/dashboard/categories")
+// })
 
 // Funzioni
 
@@ -202,9 +212,3 @@ if(modalTitle || modalDescription || modalBody){
 
 }
 
-
-
-document.addEventListener("mousedown", function(){
-    const checkbox = this.documentElement.querySelectorAll("input[type=\"checkbox\"]:checked")
-    console.log(checkbox[0].id);
-})

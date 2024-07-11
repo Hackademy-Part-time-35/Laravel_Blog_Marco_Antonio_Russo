@@ -14,6 +14,6 @@ class Category extends Model
     ] ;
 
     protected function articles(){
-        return $this->hasMany(Article::class);
+        return $this->belongsToMany(Article::class);
     }
 }

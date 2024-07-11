@@ -22,20 +22,24 @@
         </thead>
         {{-- end head --}}
 
-        {{-- form multiDelete --}}
-        
+        <form id="deleteMultiForm" action="{{ route("categories.destroyFromMultiselect") }}" method="POST">
+            <div class="flex">
+                @csrf
+                @method('DELETE')
 
-                <div class="flex">
-                    <button class="btn btn-outline btn-error rounded-none rounded-tl-3xl text-white w-1/12" type="submit" form="multiDeleteForm">Delete selected</button>
-                    <a href="{{ route("categories.create") }}" class="btn btn-outline btn-success col-start-5 w-11/12 rounded-none rounded-tr-3xl">Add Category<i class="fa-solid fa-plus"></i></a>
-                </div>
+                <button form="deleteMultiForm" class="btn btn-outline btn-error rounded-none rounded-tl-3xl text-white w-1/12" type="submit" id="deleteMultiFormBtn">Delete selected</button>
+                
+                <a href="{{ route("categories.create") }}" class="btn btn-outline btn-success border-1 col-start-5 w-11/12 rounded-none rounded-tr-3xl">Aggiungi Categoria<i class="fa-solid fa-plus"></i></a>
+            </div>
+        </form>
 
                 @foreach($categories as $category)
         {{-- body --}}
+                
                     <tbody class="bg-gradient-to-r from-slate-800 to-slate-700">
                         <tr class="hover:bg-slate-700">
                             <td class="text-center">
-                                <input type="checkbox" class="bg-slate-800 checkbox checkbox-error" name="ids[]" value="{{ $category->id }}" id={{ $category->id }} />
+                                <input form="deleteMultiForm" type="checkbox" class="bg-slate-800 checkbox checkbox-error" name="ids[]"/>
                             </td>
                             <th>{{ $category->id }}</th>
                             <td>{{ $category->name }}</td>
@@ -48,12 +52,12 @@
                             </td>
                             
                             <td class="flex justify-end gap-5">
-                                @if($category->name !== "Unset")
+                                {{-- @if($category->name !== "Unset") --}}
                                     <a href="{{ route("categories.edit", $category)}}" class=" btn btn-outline btn-warning">Modifica</a>
-                                    <form method="POST" action="{{ route("categories.destroy", $category) }}"> @csrf @method('DELETE')
-                                        <button type="submit" class="btn btn-outline  btn-error">Elimina</button>
+                                    <form id="deleteForm{{$category->id}}" method="POST" action="{{ route("categories.destroy", $category) }}"> @csrf @method('DELETE')
+                                        <button form="deleteForm{{$category->id}}" type="submit" class="btn btn-outline  btn-error">Elimina</button>
                                     </form>
-                                @endif                                
+                                {{-- @endif                                 --}}
                             </td>
                         </tr>
                     </tbody>
@@ -65,15 +69,5 @@
 {{-- end Tabella --}}
 <x-toast-success />
 
-
-<form id="multiDeleteForm" action="{{route("categories.destroyFromMultiselect")}}" method="POST" class="hidden">
-    @csrf
-    @method('DELETE')
-
-    @foreach($categories as $category)
-        
-    @endforeach
-
-</form>
-
 </x-layout>
+

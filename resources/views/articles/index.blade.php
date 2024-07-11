@@ -24,7 +24,11 @@
                     <tr class="hover:bg-slate-700">
                         <th>{{ $article->id }}</th>
                         <td>{{ $article->title }}</td>
-                        <td>{{ $article->category->name }}</td>
+                        <td>
+                            @foreach ($article->categories as $category)
+                                {{$category->name}}
+                            @endforeach
+                        </td>
                         <td>
                             <div @class(['badge-success' => $article->visible, "badge" => true, "badge-error" => !$article->visible])>
                                 {{ $article->visible == 1? "Visibile" : "Nascosto"}}

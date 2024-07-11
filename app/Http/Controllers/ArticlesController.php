@@ -43,22 +43,34 @@ class ArticlesController extends Controller
 
     public function create(){
 
-        return view("articles.create", [
+        return view("articles.form", [
             "categories" => Category::all(),
             "articles" => Article::all(),
-            "title"=> "Crea Articolo",
+            "title" => "Crea Articolo",
+            "action" => route("articles.store"),
+            "method" => "",
+            "article" => new Article()
+
         ]);
     }
 
+
+
     public function store(StoreArticleRequest $request){
-        $article = Article::create($request->all());
 
-        // Mail::to("example@example.com")->send(new newArticleCreated(
-        //     $request->title, 
-        //     auth()->user()->email
-        // ));
+        //? Mail::to("example@example.com")->send(new newArticleCreated(
+        //?     $request->title, 
+        //?     auth()->user()->email
+        //? ));
 
-        $article->user_id = auth()->user()->id;
+
+
+        $article = Article::create(array_merge(
+            $request->all(),
+            ["user_id" => auth()->user()->id]
+        ));
+
+        $article->categories()->attach($request->categories);
 
         if($request->hasFile("image") && $request->file("image")->isValid()){
             $imgName = "img_" . uniqid() . "." . $request->file("image")->extension();
@@ -67,11 +79,15 @@ class ArticlesController extends Controller
 
             $article->image = $request->file("image")->storeAs($imgPath,$imgName);
             
+            $article->save();
         }
         
-        $article->save();
         return redirect()->back()->with("success","Articolo creato correttamente");
     }
+
+
+
+
 
     public function show(Article $article){
         return view("articles.show",["article"=> $article]);
@@ -81,7 +97,13 @@ class ArticlesController extends Controller
     public function edit(Article $article){
         
         if($article->user_id === auth()->user()->id || $this->isSuperUser()){
-            return  view("articles.edit",["title"=> "Modifica Articolo","article"=> $article, "categories" => Category::all()]);
+            return  view("articles.form",[
+                "title"=> "Modifica Articolo",
+                "article"=> $article,
+                "categories" => Category::all(),
+                "action" => route("articles.update", $article),
+                "method" => "PUT",
+        ]);
         }
         
         abort(403);
@@ -93,6 +115,8 @@ class ArticlesController extends Controller
 
         if($article->user_id === auth()->user()->id || $this->isSuperUser()){
             $article->update($request->all());
+            $article->categories()->detach();
+            $article->categories()->attach($request->categories);
             return redirect()->route("articles.index")->with("success","Articolo modificato con successo");
         }
         abort(403);    
@@ -105,6 +129,7 @@ class ArticlesController extends Controller
     {
 
         if($article->user_id === auth()->user()->id || $this->isSuperUser()){
+            $article->categories()->detach();
             $article->delete();
             return redirect()->back()->with(["success" => "Articolo eliminato correttamente"]);
         }

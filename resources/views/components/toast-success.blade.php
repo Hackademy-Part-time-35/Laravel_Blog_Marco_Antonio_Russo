@@ -9,4 +9,11 @@
         </div>
     </div>
 
+@elseif(session()->has("error"))
+    <div class="toast toast-end">
+        <div class="alert alert-error flex flex-row justify-center gap-1 items-center text-gray-50">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+            {{ session("error") }}
+        </div>
+    </div>
 @endif
