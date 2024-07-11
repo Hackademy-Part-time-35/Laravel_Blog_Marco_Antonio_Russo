@@ -38,6 +38,9 @@ Route::prefix("dashboard")->middleware("auth")->group(function () {
     Route::resource("articles", ArticlesController::class, [
         "exept" => ["show"]
     ]);
+    Route::delete("articles", [ArticlesController::class,"destroyFromMultiselect"])->name("articles.destroyFromMultiselect");
+
+
     Route::resource('categories', CategoryController::class);
     Route::delete("categories", [CategoryController::class,"destroyFromMultiselect"])->name("categories.destroyFromMultiselect");
         

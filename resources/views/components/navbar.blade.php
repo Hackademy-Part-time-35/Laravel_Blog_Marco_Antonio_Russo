@@ -16,7 +16,7 @@
                 <li class="border-b-2 md:border-0"><a class=" {{ request()->is("contatti") ? "active-link" : "" }}" href={{route("contacts")}}>Contatti</a></li>
                 <li class="border-b-2 md:border-0"><a class=" {{ request()->is("chi-siamo") ? "active-link" : "" }}" href={{route("aboutUs")}}>Chi siamo</a></li>
                 <li class="border-b-2 md:border-0"><a class=" {{ request()->is("conta-stringa") ? "active-link" : "" }}" href={{route("count.string")}}>Conta Stringa</a></li>
-                <li class="border-b-2 md:border-0"><a class=" {{ request()->is("libri") || request()->is("libri/*") ? "active-link" : "" }}" href={{route("books")}}>Libri</a></li>
+                <li class="border-b-2 md:border-0"><a class=" {{ request()->is("books") || request()->is("books/*") ? "active-link" : "" }}" href={{route("books")}}>Libri</a></li>
     
             </ul>
     
@@ -25,15 +25,15 @@
     
             @auth
             {{-- Dropdown button --}}
-                <div class="flex items-center">
+                <button class="flex items-center" id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" type="button">
                     <div class=" w-10 h-10 rounded-full overflow-clip border-2 border-red-700 ">
                         <img src="{{ Storage::url(auth()->user()->img)}}" alt="">
                     </div>
     
-                    <button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="text-whitefont-medium ps-2 py-2.5 text-center " type="button">
+                    <div  class="text-whitefont-medium ps-2 py-2.5 text-center ">
                         <i class="fa-solid fa-chevron-down"></i> 
-                    </button>
-                </div>
+                    </div>
+                </button>
                     
                     <!-- Dropdown menu -->
                     <div id="dropdownInformation" class="z-10 hidden bg-slate-700 divide-y divide-red-700 rounded-lg shadow w-44 border-2 border-red-700 mt-40">

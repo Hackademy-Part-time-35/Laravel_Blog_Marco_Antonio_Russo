@@ -60,11 +60,11 @@
                 <div class="flex justify-end gap-10 mb-3">
                         <div>
                             <label for="true">Visibile</label>
-                            <input value="1" type="radio" name="visible" id="true" checked class="radio radio-error " />
+                            <input value="1" type="radio" name="visible" id="true" checked @checked($article->visible === 1) class="radio radio-error " />
                         </div>
                         <div>
                             <label for="false">Invisibile</label>
-                            <input value="0" type="radio" name="visible" id="false" class="radio radio-error" />
+                            <input value="0" type="radio" name="visible" id="false" @checked($article->visible === 0) class="radio radio-error" />
 
                         </div>
                         
@@ -82,8 +82,8 @@
 
 
     <!-- Open the modal using ID.showModal() method -->
-<dialog id="categoryModal" class="modal modal-bottom sm:modal-middle">
-    <div class="modal-box">
+<dialog id="categoryModal" class="modal modal-bottom sm:modal-middle ">
+    <div class="modal-box border-2  border-red-700">
         <form method="dialog">
             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>
@@ -101,7 +101,7 @@
             <div class="modal-action">
                 @csrf
                 <!-- if there is a button in form, it will close the modal -->
-                <button type="submit" class="btn btn-success">Crea</button>
+                <button type="submit" class="btn btn-outline btn-success">Crea</button>
         </form>
     </div>
 </dialog>

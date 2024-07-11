@@ -96,30 +96,32 @@ class ArticlesController extends Controller
 
     public function edit(Article $article){
         
-        if($article->user_id === auth()->user()->id || $this->isSuperUser()){
-            return  view("articles.form",[
-                "title"=> "Modifica Articolo",
-                "article"=> $article,
-                "categories" => Category::all(),
-                "action" => route("articles.update", $article),
-                "method" => "PUT",
-        ]);
+        if(!($article->user_id === auth()->user()->id || $this->isSuperUser())){
+            abort(403);
         }
         
-        abort(403);
+        return  view("articles.form",[
+            "title"=> "Modifica Articolo",
+            "article"=> $article,
+            "categories" => Category::all(),
+            "action" => route("articles.update", $article),
+            "method" => "PUT",
+        ]);
     }
 
 
     public function update(StoreArticleRequest $request, Article $article)
     {
 
-        if($article->user_id === auth()->user()->id || $this->isSuperUser()){
-            $article->update($request->all());
-            $article->categories()->detach();
-            $article->categories()->attach($request->categories);
-            return redirect()->route("articles.index")->with("success","Articolo modificato con successo");
+        if(!($article->user_id === auth()->user()->id || $this->isSuperUser())){
+            abort(403);    
         }
-        abort(403);    
+
+
+        $article->update($request->all());
+        $article->categories()->detach();
+        $article->categories()->attach($request->categories);
+        return redirect()->route("articles.index")->with("success","Articolo modificato con successo");
     }
 
     /**
@@ -128,13 +130,31 @@ class ArticlesController extends Controller
     public function destroy(Article $article)
     {
 
-        if($article->user_id === auth()->user()->id || $this->isSuperUser()){
-            $article->categories()->detach();
-            $article->delete();
-            return redirect()->back()->with(["success" => "Articolo eliminato correttamente"]);
+        if(!($article->user_id !== auth()->user()->id || $this->isSuperUser())){
+            abort(403); 
         }
-        abort(403); 
         
+        $article->categories()->detach();
+        $article->delete();
+        return redirect()->back()->with(["success" => "Articolo eliminato correttamente"]);
+    }
+
+
+    public function destroyFromMultiselect(Request $request){
+
+        $filteredArticles = Article::whereIn("id", $request->input("ids"))->get();
+        $numbOfFilteredArticles = $filteredArticles->count();
+        
+        foreach($filteredArticles as $filteredArticle){
+            $numbOfFilteredArticle = $filteredArticle->categories->count();
+            if($filteredArticle->categories->count()){
+                $filteredArticle->categories()->detach();
+
+            }
+            $filteredArticle->delete();
+        }
+        
+        return redirect()->back()->with(["success" => "$numbOfFilteredArticles articol". ($numbOfFilteredArticles > 1 ? "i" : "o") . " cancellat" . ($numbOfFilteredArticles > 1 ? "i" : "o") . " correttamente"]);
     }
 
 }

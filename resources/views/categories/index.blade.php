@@ -39,7 +39,7 @@
                     <tbody class="bg-gradient-to-r from-slate-800 to-slate-700">
                         <tr class="hover:bg-slate-700">
                             <td class="text-center">
-                                <input form="deleteMultiForm" type="checkbox" class="bg-slate-800 checkbox checkbox-error" name="ids[]"/>
+                                <input form="deleteMultiForm" type="checkbox" class="bg-slate-800 checkbox checkbox-error" name="ids[]" value="{{ $category->id }}" />
                             </td>
                             <th>{{ $category->id }}</th>
                             <td>{{ $category->name }}</td>

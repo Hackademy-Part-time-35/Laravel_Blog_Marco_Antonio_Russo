@@ -13,6 +13,7 @@
     {{-- FontAwesome CDN --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    
     {{-- CSS --}}
     @vite('resources/css/app.css')
 
@@ -24,6 +25,5 @@
 </head>
 <body class="min-h-[calc(100vh-70px)] font-[Montserrat] bg-gradient-to-r from-gray-900 to-gray-700 text-gray-200 mt-16">
     {{ $slot }}
-    {{-- <script src="../path/to/flowbite/dist/flowbite.min.js"></script> --}}
 </body>
 </html>

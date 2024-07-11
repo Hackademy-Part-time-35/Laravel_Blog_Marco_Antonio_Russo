@@ -101,22 +101,18 @@ class CategoryController extends Controller
     
     public function destroyFromMultiselect(Request $request){
 
-        // dd($request);
-        $key1 = $request->input('key1');
-        $key2 = $request->input('key2');
-    
-        // Logica di cancellazione delle categorie qui
-        // Esempio: $deleted = Category::where('key', $key1)->delete();
-    
-        // Esempio di dati da restituire
-        $data = [
-            'success' => true,
-            'message' => 'Categoria cancellata correttamente',
-            'deleted_keys' => ['key1' => $key1, 'key2' => $key2]
-        ];
+        $filteredCategories = Category::whereIn("id", $request->input("ids"))->get();
+        $numbOfFilteredCategories = $filteredCategories->count();
+
+        foreach($filteredCategories as $filteredCategory){
+            $numbOfFilteredCategory = $filteredCategory->articles->count();
+            if($filteredCategory->articles->count()){
+                return redirect()->back()->with(["error" => "Impossibile cancellare la categoria $filteredCategory->name poichè associata a $numbOfFilteredCategory articol".($numbOfFilteredCategory > 1? "i" : "o")]);
+            }
+            $filteredCategory->delete();
+        }
         
-        
-        return redirect()->back()->with(["success" => "Categoria cancellata correttamente"]);
+        return redirect()->back()->with(["success" => "$numbOfFilteredCategories categori". ($numbOfFilteredCategories > 1 ? "e" : "a") . " cancellat" . ($numbOfFilteredCategories > 1 ? "e" : "a") . " correttamente"]);
     }
     
 }
