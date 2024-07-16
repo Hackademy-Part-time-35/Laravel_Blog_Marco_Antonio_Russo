@@ -15,7 +15,7 @@
                 <th>Title</th>
                 <th>Category</th>
                 <th>Visibility</th>
-                <th>Actions</th>
+                <th class="text-end">Actions</th>
                 </tr>
             </thead>
 
@@ -33,7 +33,7 @@
             @foreach($articles as $article)
                 <tbody class="bg-gradient-to-r from-slate-800 to-slate-700">
                     <tr class="hover:bg-slate-700">
-                        <td class="text-center">
+                        <td class="text-start">
                             <input form="deleteMultiForm" type="checkbox" class="bg-slate-800 checkbox checkbox-error" name="ids[]" value="{{ $article->id }}"/>
                         </td>
                         <th>{{ $article->id }}</th>
@@ -45,13 +45,16 @@
                         </td>
                         <td>
                             <div class="flex gap-2 items-center">
-
-                                    <div @class(['badge-success' => $article->visible, "badge", "font-semibold" => true, "badge-error" => !$article->visible])>
-                                        {{ $article->visible == 1? "Visibile" : "Nascosto"}}
-                                    </div>
+                                            <i @class([
+                                                "fa-eye text-success" => $article->visible,
+                                                "fa-eye-slash text-error" => !($article->visible),
+                                                "fa-regular", 
+                                                "mx-auto",
+                                                "text-xl"
+                                            ])></i>
                             </div>
                         </td>
-                        <td class="flex justify-start items-center gap-5 pe-6 font-">
+                        <td class="flex justify-end items-center gap-5 pe-6 font-">
                             <a href="{{ route("articles.edit", $article)}}" class=" btn btn-warning">Modifica</a>
                             <form method="POST" action="{{ route("articles.destroy", $article) }}"> @csrf @method('DELETE')
                                 <button class="btn btn-ghost btn-outline  btn-error">Elimina</button>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AnimeController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\CategoryController;
@@ -49,6 +50,14 @@ Route::prefix("dashboard")->middleware("auth")->group(function () {
     ]);
 
 });
+
+
+// Anime
+Route::get("/anime", [AnimeController::class, "index"])->name("anime.index");
+Route::get("/anime/{genre}/{name}", [AnimeController::class, "animeByGenre"])->name("anime.byGenre");
+Route::get("/anime/{genre_id}/{name}/{anime_id}", [AnimeController::class, "animeById"])->name("anime.byId");
+
+
 
 // Categories
 Route::post("dashboard/articles/create", [CategoryController::class,"storeFromArticles"])->name("categories.storeFromArticles");
