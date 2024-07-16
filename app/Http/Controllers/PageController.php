@@ -46,5 +46,7 @@ class PageController extends Controller
         return redirect()->back()->with(["output" => "Il messaggio inviato è lungo $stringLeng caratter" . ($stringLeng == 1 ? "e" : "i")]);
     }
 
-
+    function showAPI(){
+        return view("showapi");
+    }
 }

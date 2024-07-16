@@ -157,4 +157,7 @@ class ArticlesController extends Controller
         return redirect()->back()->with(["success" => "$numbOfFilteredArticles articol". ($numbOfFilteredArticles > 1 ? "i" : "o") . " cancellat" . ($numbOfFilteredArticles > 1 ? "i" : "o") . " correttamente"]);
     }
 
+    public function getArticlesAPI(){
+        return Article::all();
+    }
 }

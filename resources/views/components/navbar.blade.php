@@ -17,6 +17,8 @@
                 <li class="border-b-2 md:border-0"><a class=" {{ request()->is("chi-siamo") ? "active-link" : "" }}" href={{route("aboutUs")}}>Chi siamo</a></li>
                 <li class="border-b-2 md:border-0"><a class=" {{ request()->is("conta-stringa") ? "active-link" : "" }}" href={{route("count.string")}}>Conta Stringa</a></li>
                 <li class="border-b-2 md:border-0"><a class=" {{ request()->is("books") || request()->is("books/*") ? "active-link" : "" }}" href={{route("books")}}>Libri</a></li>
+                <li class="border-b-2 md:border-0"><a class=" {{ request()->is("showAPI") || request()->is("books/*") ? "active-link" : "" }}" href={{route("show.api")}}>Test API</a></li>
+                <li class="border-b-2 md:border-0"><a class=" {{ request()->is("showapi") || request()->is("books/*") ? "active-link" : "" }}" href={{route("show.api")}}>Libri</a></li>
     
             </ul>
     

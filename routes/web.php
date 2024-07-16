@@ -73,3 +73,6 @@ Route::get("/books/{book}", [BooksController::class, "show"])->name("books.show"
 
 // User
 Route::put('users/{id}', [UserController::class,'update'])->name('user.update');
+
+// Show API
+Route::get("/showAPI", [PageController::class, "showAPI"])->name("show.api");
