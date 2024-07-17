@@ -5,6 +5,7 @@ use App\Http\Controllers\AnimeController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -57,7 +58,11 @@ Route::get("/anime", [AnimeController::class, "index"])->name("anime.index");
 Route::get("/anime/{genre}/{name}", [AnimeController::class, "animeByGenre"])->name("anime.byGenre");
 Route::get("/anime/{genre_id}/{name}/{anime_id}", [AnimeController::class, "animeById"])->name("anime.byId");
 
-
+// Products
+Route::post("/product/store/{id}/{name}", [ProductController::class , "store"])->name("product.store");
+Route::get("product/index", [ProductController::class, "index"])->name("product.index");
+Route::get("product/{item}/edit", [ProductController::class, "edit"])->name("product.edit");
+Route::put("product/update/{product}", [ProductController::class, "update"])->name("product.update");
 
 // Categories
 Route::post("dashboard/articles/create", [CategoryController::class,"storeFromArticles"])->name("categories.storeFromArticles");

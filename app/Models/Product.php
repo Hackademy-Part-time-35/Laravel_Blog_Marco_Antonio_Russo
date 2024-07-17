@@ -9,5 +9,10 @@ class Product extends Model
 {
     use HasFactory;
 
-    
+    public $fillable = [
+        'title',
+        'image',
+        'year',
+        'score'
+    ];
 }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("title");
             $table->string("image");
             $table->integer("score");
-            $table->integer("year");
+            $table->integer("year")->nullable();
             $table->timestamps();
         });
     }
