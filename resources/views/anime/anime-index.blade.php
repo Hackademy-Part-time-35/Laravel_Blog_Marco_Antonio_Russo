@@ -37,6 +37,13 @@
         {{-- end form multiDelete --}}
         </table>
     </div>
+    {{$anime->links("pagination::bootstrap-5")}}
+    <div class="join">
+        <button class="join-item btn">1</button>
+        <button class="join-item btn btn-active">2</button>
+        <button class="join-item btn">3</button>
+        <button class="join-item btn">4</button>
+    </div>
 {{-- end Tabella --}}
 <x-toast-success />
 

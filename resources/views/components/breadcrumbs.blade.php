@@ -1,4 +1,4 @@
-<div class="breadcrumbs text-sm p-5 fixed">
+<div class="breadcrumbs text-sm p-5">
     <ul>
         @php
             $segments = ""

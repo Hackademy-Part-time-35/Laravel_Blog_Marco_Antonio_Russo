@@ -27,6 +27,8 @@
         <a href="{{route("articles.index")}}" class="btn btn-outline btn-primary">Lista Articoli</a>
         <a href="{{route("categories.index")}}" class="btn btn-outline btn-primary">Lista Categorie</a>
         <a href="{{route("books.index")}}" class="btn btn-outline btn-primary">Lista Libri</a>
+        <a href="{{route("users.list")}}" class="btn btn-outline btn-primary">Lista Utenti</a>
+        <a href="{{route("article.list")}}" class="btn btn-outline btn-primary">Lista Articoli con ricerca</a>
     </section>
 
 </main>

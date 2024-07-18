@@ -160,4 +160,10 @@ class ArticlesController extends Controller
     public function getArticlesAPI(){
         return Article::all();
     }
+
+    public function articleList(){
+        return view("account.article-list", [
+            "title" => "Lista Articoli"
+        ]);
+    }
 }

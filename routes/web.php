@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ContactController;
 use App\Models\Book;
+use App\Livewire\Counter;
 
 // Home
 Route::get('/', [PageController::class, "home"])->name("homepage");
@@ -35,11 +36,13 @@ Route::post('/conta-stringa', [PageController::class,'countStringSend'])->name('
 // Account
 Route::prefix("dashboard")->middleware("auth")->group(function () {
     Route::get("/", [AccountController::class,"account"])->name("account");
-
+    Route::get("/user-list", [AccountController::class, "userList"])->name("users.list");
 
     Route::resource("articles", ArticlesController::class, [
         "exept" => ["show"]
     ]);
+    Route::get("/article-list", [ArticlesController::class, "articleList"])->name("article.list");
+
     Route::delete("articles", [ArticlesController::class,"destroyFromMultiselect"])->name("articles.destroyFromMultiselect");
 
 
@@ -81,3 +84,6 @@ Route::put('users/{id}', [UserController::class,'update'])->name('user.update');
 
 // Show API
 Route::get("/showAPI", [PageController::class, "showAPI"])->name("show.api");
+
+// Livewire
+Route::get('/counter', Counter::class);

@@ -48,4 +48,10 @@ class User extends Authenticatable
     protected function articles(){
         return $this->hasMany(Article::class);
     }
+
+    public static function search($search){
+        return self::where("name", "LIKE", "%$search%")
+                    ->orWhere("email", "LIKE", "%$search%")
+                    ->get();
+    }
 }
