@@ -20,4 +20,11 @@ class UserController extends Controller
         
         return redirect('/account')->with('success', 'Item updated successfully');
     }
+
+
+    public function index(){
+        return view("pages.users", [
+            "title" => "Elenco Utenti"
+        ]);
+    }
 }

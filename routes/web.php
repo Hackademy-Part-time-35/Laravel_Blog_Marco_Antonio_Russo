@@ -87,3 +87,4 @@ Route::get("/showAPI", [PageController::class, "showAPI"])->name("show.api");
 
 // Livewire
 Route::get('/counter', Counter::class);
+Route::get('/users', [UserController::class, "index"])->name("users.index");

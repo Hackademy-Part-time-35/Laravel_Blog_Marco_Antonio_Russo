@@ -17,6 +17,7 @@
                     <th>#</th>
                     <th>Nome</th>
                     <th>Email</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             @foreach($users as $user)
@@ -25,11 +26,16 @@
                         <th>{{ $user->id }}</th>
                         <td>{{ $user->name }}</td>
                         <td><a href="mailto:{{$user->email}}">{{ $user->email }}</a></td>
+                        <td>
+                            <button wire:click="edit({{ $user->id }})" class="btn btn-warning btn-outline">Modifica</button>
+                            <button wire:click="delete({{ $user->id }})" class="btn btn-error btn-outline">Elimina</button>
+                        </td>
                     </tr>
                 </tbody>
             @endforeach
             </table>
         </div>
     </div>
+<x-toast-success />
         
 </div>
