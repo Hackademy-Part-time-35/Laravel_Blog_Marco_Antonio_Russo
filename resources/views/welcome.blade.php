@@ -7,9 +7,12 @@
 
 
     {{-- START Header --}}
-    <header class="h-[calc(100vh-5rem)] flex justify-center items-center">
-        <h1 class="font-bold text-4xl lg:text-7xl">{{config("app.name")}}</h1>
-    </header>
+        <h1 class="font-bold text-4xl text-center p-5 lg:text-7xl">{{config("app.name")}}</h1>
     {{-- END Header --}}
 
+    <section class="flex justify-evenly items-center w-1/2 mx-auto mt-20">
+        <a href="{{route("prodotti")}}" class="btn btn-outline btn-primary">Prodotti</a>
+        <a href="{{route("numero", 15)}}" class="btn btn-outline btn-primary">Numero 15</a>
+        <a href="{{route("todo")}}" class="btn btn-outline btn-primary">TODO</a>
+    </section>
 </x-layout>

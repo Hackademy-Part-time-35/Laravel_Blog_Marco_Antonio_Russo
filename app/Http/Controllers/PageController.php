@@ -57,6 +57,6 @@ class PageController extends Controller
     }
 
     function numero($id){
-        return $id;
+        return "Il parametro inviato è il " .  $id;
     }
 }
