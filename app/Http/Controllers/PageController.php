@@ -49,4 +49,14 @@ class PageController extends Controller
     function showAPI(){
         return view("showapi");
     }
+
+    function prodotti(){
+        return view("pages.prodotti", [
+            "title" => "Catalogo Prodotti"
+        ]);
+    }
+
+    function numero($id){
+        return $id;
+    }
 }

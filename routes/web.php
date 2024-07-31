@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\TodoController;
 use App\Models\Book;
 use App\Livewire\Counter;
 
@@ -88,3 +89,12 @@ Route::get("/showAPI", [PageController::class, "showAPI"])->name("show.api");
 // Livewire
 Route::get('/counter', Counter::class);
 Route::get('/users', [UserController::class, "index"])->name("users.index");
+
+// Prodotti
+Route::get('/prodotti', [PageController::class, "prodotti"])->name("prodotti");
+
+// Numero
+Route::get('/numero/{id}', [PageController::class, "numero"])->name("numero");
+
+// Todo
+Route::get('/todo', [TodoController::class, "todo"])->name("todo");
